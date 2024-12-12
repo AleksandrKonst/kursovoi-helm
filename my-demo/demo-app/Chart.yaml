@@ -1,4 +1,0 @@
-apiVersion: v2
-name: demo-app
-description: A Helm chart for demo-app
-version: 1.0.0
