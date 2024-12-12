@@ -16,7 +16,8 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    certManagerIssuer: "vault-issuer"
   tls:
     secretName: "quickstart-example-tls"
   hosts:
