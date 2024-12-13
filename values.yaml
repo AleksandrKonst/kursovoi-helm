@@ -13,6 +13,7 @@ vault:
 service:
   type: ClusterIP
   port: 80
+  portName: "http"
 
 ingress:
   enabled: true
@@ -25,3 +26,14 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
+          
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 3
+  metricName: "http_requests_per_second" 
+  averageValue: "10"
+
+serviceMonitor:
+  enabled: true
+  interval: 1s
+  path: /metrics

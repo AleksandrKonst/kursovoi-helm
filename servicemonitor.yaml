@@ -1,17 +1,17 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: demo-app-servicemonitor
+  name: {{ .Release.Name }}-servicemonitor
   labels:
-    app: demo-app
+    app: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: demo-app
+      app: {{ .Release.Name }}
   endpoints:
-  - port: web
-    path: /metrics
-    interval: 1s
+    - port: {{ .Values.service.portName }}
+      path: {{ .Values.serviceMonitor.path }}
+      interval: {{ .Values.serviceMonitor.interval }}
   namespaceSelector:
     matchNames:
-    - default
+      - {{ .Release.Namespace }}
